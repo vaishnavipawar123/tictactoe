@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Tic Tac Toe</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Tic Tac Toe</h1>
+        <div class="grid">
+            {% for index in range(9) %}
+                <form method="POST" action="/">
+                    <button type="submit" name="index" value="{{ index }}">
+                        {{ board[index] }}
+                    </button>
+                </form>
+            {% endfor %}
+        </div>
+        {% if winner %}
+            <p id="status">Player {{ winner }} wins!</p>
+        {% endif %}
+        <a href="{{ url_for('reset') }}">Restart</a>
+    </div>
+</body>
+</html>
